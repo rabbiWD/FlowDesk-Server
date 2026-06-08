@@ -10,10 +10,10 @@ export const initDB = async()=>{
         await pool.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
-                username VARCHAR(20) NOT NULL,
+                name VARCHAR(20) NOT NULL,
                 email VARCHAR(100) NOT NULL UNIQUE,
-                password VARCHAR(20) NOT NULL,
-                role VARCHAR(20) DEFAULT 'team_member',
+                password VARCHAR(250) NOT NULL,
+                role VARCHAR(100) DEFAULT 'team_member',
                 CHECK (role IN ('admin', 'project_manager','team_member')),
                 created_at TIMESTAMP DEFAULT NOW(),
                 updated_at TIMESTAMP DEFAULT NOW()
@@ -26,7 +26,7 @@ export const initDB = async()=>{
                 name VARCHAR(100) NOT NULL,
                 description TEXT,
                 deadline TIMESTAMP,
-                status VARCHAR(20) DEFAULT 'active'
+                status VARCHAR(20) DEFAULT 'active',
                 CHECK (status IN ('active', 'completed', 'on_hold')),
                 created_by INT REFERENCES users(id) ON DELETE CASCADE,
                 created_at TIMESTAMP DEFAULT NOW(),
@@ -52,7 +52,7 @@ export const initDB = async()=>{
                 project_id INT REFERENCES projects(id) ON DELETE CASCADE,
                 assigned_to INT REFERENCES users(id) ON DELETE SET NULL,
                 due_date DATE,
-                priority VARCHAR(10) DEFAULT 'medium'
+                priority VARCHAR(10) DEFAULT 'medium',
                 CHECK (priority IN ('high', 'medium', 'low')),
                 status VARCHAR(20) DEFAULT 'pending',
                 CHECK (status IN ('pending', 'in_progress', 'completed')),

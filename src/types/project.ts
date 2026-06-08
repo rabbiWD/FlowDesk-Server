@@ -8,3 +8,12 @@ export interface IProject {
   status?: ProjectStatus;
   created_by?: number;
 }
+
+export type IdParams = {
+  id: string;
+};
+
+export type ProjectMemberParams = {
+  projectId: string;
+  userId: string;
+};

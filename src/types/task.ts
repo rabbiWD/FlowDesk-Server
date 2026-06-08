@@ -10,4 +10,5 @@ export interface ITask {
   priority: TaskPriority;
   status?: TaskStatus;
   due_date: string;
+  created_by?: string;
 }

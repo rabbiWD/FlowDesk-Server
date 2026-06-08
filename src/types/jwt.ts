@@ -1,7 +1,7 @@
-import type { UserRole } from "./user";
+import type { Roles } from "./user";
 
-export interface IJWT {
+export interface IJwtPayload {
   id: number;
   email: string;
-  role: UserRole;
+  role: Roles;
 }
