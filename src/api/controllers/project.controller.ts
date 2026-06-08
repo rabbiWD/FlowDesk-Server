@@ -1,11 +1,19 @@
 import type { Request, Response } from "express";
 import { projectService } from "../services/project.service";
+import { logActivity } from "../../utils/activityLogger";
 
 export const createProject = async (req: Request, res: Response) => {
   try {
     const result = await projectService.createProject({
       ...req.body,
       created_by: req.user?.id,
+    });
+
+    await logActivity({
+      user_id: req.user!.id,
+      action: `Created project ${name}`,
+      entity_type: "project",
+      entity_id: result.id,
     });
 
     res.status(201).json({

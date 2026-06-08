@@ -52,10 +52,10 @@ export const initDB = async()=>{
                 project_id INT REFERENCES projects(id) ON DELETE CASCADE,
                 assigned_to INT REFERENCES users(id) ON DELETE SET NULL,
                 due_date DATE,
-                priority VARCHAR(10) DEFAULT 'medium',
+                priority VARCHAR(100) DEFAULT 'medium',
                 CHECK (priority IN ('high', 'medium', 'low')),
-                status VARCHAR(20) DEFAULT 'pending',
-                CHECK (status IN ('pending', 'in_progress', 'completed')),
+                status VARCHAR(20) DEFAULT 'todo',
+                CHECK (status IN ('todo', 'in_progress', 'completed')),
                 created_by INT REFERENCES users(id) ON DELETE CASCADE,
                 created_at TIMESTAMP DEFAULT NOW(),
                 updated_at TIMESTAMP DEFAULT NOW()

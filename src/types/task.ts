@@ -12,3 +12,17 @@ export interface ITask {
   due_date: string;
   created_by?: string;
 }
+
+export type TaskParams = {
+  id: string;
+};
+
+export type TaskStatusParams = {
+  id: string;
+};
+
+export type TaskQuery = {
+  status?: string;
+  priority?: string;
+  projectId?: string;
+};

@@ -1,9 +1,9 @@
 
 export interface IActivity {
   id?: number;
-  user_id: string;
+  user_id: number;
   action: string;
-  entity_type?: string;
-  entity_id?: string;
+  entity_type?: "project" | "task" | "user";
+  entity_id?: number;
   created_at?: Date;
 }
